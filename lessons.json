@@ -1,0 +1,44 @@
+{
+  "Relationships": {
+    "Healthy relationships": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Consent": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Power, control, coercion": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Online relationships": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Intimate, romantic, and peer relationships": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"]
+  },
+  "Health and Lifestyle": {
+    "Diet, sleep, exercise": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Substances": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Vaccinations, medications, public health": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "First aid skills": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Risk assessment and personal safety": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"]
+  },
+  "Emotional and Mental Health": {
+    "Anxiety, depression, stress": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Resilience and coping strategies": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Zones of Regulation": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Self-esteem and body image": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Loneliness and belonging": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"]
+  },
+  "Life Skills": {
+    "Financial literacy": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Online safety, digital footprint, AI awareness": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Study skills, growth mindset": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Decision-making and ethics": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Time management and organisation": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"]
+  },
+  "Identity and Diversity": {
+    "Identity, self-concept, individuality": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "SEND, hidden disabilities": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Equality Act 2010 and protected characteristics": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Prejudice, discrimination, stereotypes": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Faith, belief, culture": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"]
+  },
+  "Aspirations": {
+    "Goal setting": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Careers and employment pathways": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Work experience and employer encounters": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Resilience and failure": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Financial literacy and work-life balance": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"]
+  }
+}
