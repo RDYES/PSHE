@@ -53,6 +53,35 @@
     <p>© 2026 YES Connected. All rights reserved.</p>
   </footer>
 
+<!-- Lesson Player View -->
+<main id="lessonView" class="lesson-screen" style="display:none;">
+  <button class="btn small" onclick="returnToDashboard()">← Back</button>
+
+  <h2 id="lessonTitle"></h2>
+
+  <h3>Learning Objectives</h3>
+  <ul id="lessonObjectives"></ul>
+
+  <h3>Video</h3>
+  <iframe
+    id="lessonVideo"
+    width="560"
+    height="315"
+    frameborder="0"
+    allowfullscreen
+  ></iframe>
+
+  <h3>Activity</h3>
+  <p id="lessonActivityPrompt"></p>
+  <textarea id="activityInput" placeholder="Type your answer here..."></textarea>
+
+  <h3>Knowledge Check</h3>
+  <p id="quizQuestion"></p>
+  <div id="quizOptions"></div>
+
+  <button class="btn full" onclick="submitQuiz()">Submit Answer</button>
+  <p id="quizResult"></p>
+</main>
 
 
 
