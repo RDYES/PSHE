@@ -1,7 +1,15 @@
-/* -------- YES Connected PSHE: app.js (full version) -------- */
+/* -------- YES Connected PSHE: app.js (modern modular version) -------- */
+
+import {
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
+  signOut,
+  onAuthStateChanged
+} from "[gstatic.com](https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js)";
+
+import { auth } from "./firebase-config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
-
   const loginView      = document.getElementById("loginView");
   const dashboardView  = document.getElementById("dashboardView");
   const welcomeName    = document.getElementById("welcomeName");
@@ -9,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const themesGrid     = document.getElementById("themesGrid");
 
   /* ---------- LOGIN ---------- */
-  window.login = async function() {
+  window.login = async function () {
     const email       = document.getElementById("email").value.trim();
     const password    = document.getElementById("password").value.trim();
     const teacherCode = document.getElementById("teacherCode").value.trim();
@@ -20,8 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      // ---- Sign in existing user only ----
-      await auth.signInWithEmailAndPassword(email, password);
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       if (error.code === "auth/user-not-found") {
         alert("This account isn’t set up yet. Please ask your teacher to create it.");
@@ -32,12 +39,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Identify teacher vs student using private code
-    const isTeacher = teacherCode === "TEACHER2026";  // <- change this secret if you like
+    const isTeacher = teacherCode === "TEACHER2026"; // modify as needed
     sessionStorage.setItem("isTeacher", isTeacher ? "true" : "false");
   };
 
   /* ---------- PASSWORD RESET ---------- */
-  window.resetPassword = async function() {
+  window.resetPassword = async function () {
     const email = document.getElementById("email").value.trim();
     if (!email) {
       alert("Enter your email first, then click Forgot Password.");
@@ -45,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     try {
-      await auth.sendPasswordResetEmail(email);
+      await sendPasswordResetEmail(auth, email);
       alert("Reset link has been sent! Check your inbox (and spam folder).");
     } catch (err) {
       alert("Error sending reset email: " + err.message);
@@ -53,9 +60,8 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   /* ---------- AUTH STATE LISTENER ---------- */
-  auth.onAuthStateChanged(async (user) => {
+  onAuthStateChanged(auth, async (user) => {
     if (user) {
-      // Logged in
       const isTeacher = sessionStorage.getItem("isTeacher") === "true";
       loginView.style.display     = "none";
       dashboardView.style.display = "block";
@@ -63,7 +69,6 @@ document.addEventListener("DOMContentLoaded", () => {
       welcomeName.textContent     = `Signed in as ${user.email}`;
       loadCurriculum(isTeacher);
     } else {
-      // Logged out
       loginView.style.display     = "flex";
       dashboardView.style.display = "none";
       userBar.style.display       = "none";
@@ -71,8 +76,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* ---------- LOGOUT ---------- */
-  window.logout = async function() {
-    await auth.signOut();
+  window.logout = async function () {
+    await signOut(auth);
     sessionStorage.clear();
   };
 
@@ -80,7 +85,8 @@ document.addEventListener("DOMContentLoaded", () => {
   async function loadCurriculum(isTeacher) {
     try {
       const response = await fetch("lessons.json");
-      const data     = await response.json();
+      const data = await response.json();
+
       themesGrid.innerHTML = "";
 
       Object.entries(data).forEach(([themeName, modules]) => {
@@ -88,7 +94,7 @@ document.addEventListener("DOMContentLoaded", () => {
         themeCard.className = "theme-card";
 
         const moduleList = Object.keys(modules)
-          .map(m => `<li>${m}</li>`)
+          .map((m) => `<li>${m}</li>`)
           .join("");
 
         themeCard.innerHTML = `
@@ -105,11 +111,9 @@ document.addEventListener("DOMContentLoaded", () => {
           "📊 Teacher View Active – Lesson results will appear here as students work.";
         themesGrid.appendChild(note);
       }
-
     } catch (err) {
       console.error("Error loading lessons.json:", err);
       themesGrid.innerHTML = "<p>Unable to load curriculum data.</p>";
     }
   }
-
 });
