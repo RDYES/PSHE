@@ -5,13 +5,14 @@ import {
   sendPasswordResetEmail,
   signOut,
   onAuthStateChanged
-} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
+} from "[gstatic.com](https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js)";
 
-import { auth } from "./firebase-config.js";
+import { auth, db } from "./firebase-config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginView      = document.getElementById("loginView");
   const dashboardView  = document.getElementById("dashboardView");
+  const lessonView     = document.getElementById("lessonView");
   const welcomeName    = document.getElementById("welcomeName");
   const userBar        = document.getElementById("userBar");
   const themesGrid     = document.getElementById("themesGrid");
@@ -38,8 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Identify teacher vs student using private code
-    const isTeacher = teacherCode === "TEACHER2026"; // modify as needed
+    const isTeacher = teacherCode === "TEACHER2026"; 
     sessionStorage.setItem("isTeacher", isTeacher ? "true" : "false");
   };
 
@@ -93,9 +93,25 @@ document.addEventListener("DOMContentLoaded", () => {
         const themeCard = document.createElement("div");
         themeCard.className = "theme-card";
 
-        const moduleList = Object.keys(modules)
-          .map((m) => `<li>${m}</li>`)
-          .join("");
+        let moduleList = "";
+
+        Object.entries(modules).forEach(([moduleName, lessons]) => {
+          moduleList += `
+            <li>
+              <strong>${moduleName}</strong>
+              <ul>
+                ${lessons
+                  .map(
+                    (lesson, idx) =>
+                      `<li onclick="openLesson('${themeName}', '${moduleName}', ${idx})">
+                        ${lesson.title}
+                      </li>`
+                  )
+                  .join("")}
+              </ul>
+            </li>
+          `;
+        });
 
         themeCard.innerHTML = `
           <h3>${themeName}</h3>
@@ -116,4 +132,105 @@ document.addEventListener("DOMContentLoaded", () => {
       themesGrid.innerHTML = "<p>Unable to load curriculum data.</p>";
     }
   }
-});
+
+  // -------------------------------------------------------
+  // LESSON PLAYER (STEP 2)
+  // -------------------------------------------------------
+
+  let currentLesson = null;
+  let currentLessonId = null;
+
+  window.openLesson = function (theme, moduleName, lessonIndex) {
+    fetch("lessons.json")
+      .then(r => r.json())
+      .then(data => {
+        const lesson = data[theme][moduleName][lessonIndex];
+        currentLesson = lesson;
+        currentLessonId = `${theme}_${moduleName}_lesson${lessonIndex}`;
+
+        document.getElementById("lessonTitle").textContent = lesson.title;
+
+        document.getElementById("lessonObjectives").innerHTML =
+          lesson.objectives.map(o => `<li>${o}</li>`).join("");
+
+        document.getElementById("lessonVideo").src = lesson.video;
+
+        document.getElementById("lessonActivityPrompt").textContent =
+          lesson.activityPrompt;
+
+        document.getElementById("activityInput").value = "";
+
+        document.getElementById("quizQuestion").textContent =
+          lesson.quiz.question;
+
+        document.getElementById("quizOptions").innerHTML =
+          lesson.quiz.options
+            .map(
+              (opt, i) =>
+                `<label><input type="radio" name="quiz" value="${i}">${opt}</label><br>`
+            )
+            .join("");
+
+        loginView.style.display = "none";
+        dashboardView.style.display = "none";
+        lessonView.style.display = "block";
+      });
+  };
+
+  window.returnToDashboard = function () {
+    lessonView.style.display = "none";
+    dashboardView.style.display = "block";
+    document.getElementById("quizResult").textContent = "";
+    document.getElementById("lessonVideo").src = "";
+  };
+
+  // -------------------------------------------------------
+  // AUTO‑MARK + ACTIVITY SAVE + TIMESTAMP (STEP 3)
+  // -------------------------------------------------------
+
+  window.submitQuiz = async function () {
+    if (!currentLesson) return;
+
+    const selected = document.querySelector('input[name="quiz"]:checked');
+    const resultBox = document.getElementById("quizResult");
+
+    if (!selected) {
+      resultBox.textContent = "Please choose an answer.";
+      return;
+    }
+
+    const chosen = parseInt(selected.value);
+    const correct = currentLesson.quiz.answer;
+    const score   = chosen === correct ? 1 : 0;
+
+    const activityText = document.getElementById("activityInput").value.trim();
+    const timestamp    = new Date().toISOString();
+    const userId       = auth.currentUser.uid;
+
+    try {
+      const { doc, setDoc } = await import(
+        "[gstatic.com](https://www.gstatic.com/firebasejs/10.11.1/firebase-firestore.js)"
+      );
+
+      await setDoc(
+        doc(db, "results", userId),
+        {
+          [currentLessonId]: {
+            score,
+            activityText,
+            timestamp,
+            lessonTitle: currentLesson.title
+          }
+        },
+        { merge: true }
+      );
+
+      resultBox.textContent =
+        score === 1 ? "Correct! Great job." : "Incorrect. Review and try again.";
+    } catch (err) {
+      console.error("Error saving result:", err);
+      resultBox.textContent = "Error saving your work.";
+    }
+  };
+
+}); // END DOMContentLoaded
