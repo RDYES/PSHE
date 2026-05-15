@@ -5,7 +5,7 @@ import {
   sendPasswordResetEmail,
   signOut,
   onAuthStateChanged
-} from "[gstatic.com](https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js)";
+} from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 
 import { auth } from "./firebase-config.js";
 
