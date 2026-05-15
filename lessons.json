@@ -35,7 +35,113 @@
     "Faith, belief, culture": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"]
   },
   "Aspirations": {
-    "Goal setting": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
+    "Goal setting": {
+  "Aspirations": {
+    "Goal setting": [
+      {
+        "title": "Lesson 1: What Makes an Effective Goal?",
+        "objectives": [
+          "Understand the difference between vague and specific goals",
+          "Identify why goals help motivation and wellbeing",
+          "Learn the SMART goals framework"
+        ],
+        "video": "[youtube.com](https://www.youtube.com/embed/2z4lGf6gS0A)",
+        "activityPrompt": "Write one vague goal you have, then rewrite it as a SMART goal.",
+        "quiz": {
+          "question": "Which of the following is a SMART goal?",
+          "options": [
+            "I want to get better at school work",
+            "I will improve my English grade from a 5 to a 6 by revising twice a week",
+            "I hope to be fitter someday",
+            "I want to be more confident"
+          ],
+          "answer": 1
+        }
+      },
+      {
+        "title": "Lesson 2: Breaking Goals Into Steps",
+        "objectives": [
+          "Understand why large goals need smaller actions",
+          "Learn how to plan steps in order",
+          "Create an action plan for a personal goal"
+        ],
+        "video": "[youtube.com](https://www.youtube.com/embed/YJjVbWj7p84)",
+        "activityPrompt": "Choose a goal and break it into 3–5 small, achievable steps.",
+        "quiz": {
+          "question": "Why do we break goals into smaller steps?",
+          "options": [
+            "To make them look more impressive",
+            "So we can do everything at the last minute",
+            "To make progress feel manageable and achievable",
+            "To avoid doing any hard work"
+          ],
+          "answer": 2
+        }
+      },
+      {
+        "title": "Lesson 3: Motivation and Barriers",
+        "objectives": [
+          "Recognise common barriers that can stop progress",
+          "Learn strategies to stay motivated",
+          "Plan for obstacles in advance"
+        ],
+        "video": "[youtube.com](https://www.youtube.com/embed/ZXsQAXx_ao0)",
+        "activityPrompt": "List one goal and name 2 barriers + 2 strategies for overcoming them.",
+        "quiz": {
+          "question": "Which is an example of a motivation strategy?",
+          "options": [
+            "Ignoring obstacles and hoping they go away",
+            "Setting rewards for completing steps",
+            "Doing everything without breaks",
+            "Waiting until motivation appears"
+          ],
+          "answer": 1
+        }
+      },
+      {
+        "title": "Lesson 4: Tracking Progress",
+        "objectives": [
+          "Understand why progress tracking improves success",
+          "Learn simple tracking methods (journals, checklists, apps)",
+          "Reflect on progress to adjust goals"
+        ],
+        "video": "[youtube.com](https://www.youtube.com/embed/1DkKkBTZgkE)",
+        "activityPrompt": "Create a simple progress tracker (table, checklist or calendar).",
+        "quiz": {
+          "question": "Why is tracking progress important?",
+          "options": [
+            "It pressures you to be perfect",
+            "It helps you notice improvement and adjust plans",
+            "It guarantees automatic success",
+            "It replaces the need for effort"
+          ],
+          "answer": 1
+        }
+      },
+      {
+        "title": "Lesson 5: Reviewing and Resetting Goals",
+        "objectives": [
+          "Understand why goals sometimes need changing",
+          "Learn how to evaluate success honestly",
+          "Reflect on what worked and what didn’t"
+        ],
+        "video": "[youtube.com](https://www.youtube.com/embed/MDL8r6zYqMY)",
+        "activityPrompt": "Reflect on a past goal. What worked? What would you change next time?",
+        "quiz": {
+          "question": "When should you reset a goal?",
+          "options": [
+            "When it no longer fits your needs or circumstances",
+            "Whenever you feel bored",
+            "As soon as someone else sets a goal",
+            "You should never change goals once set"
+          ],
+          "answer": 0
+        }
+      }
+    ]
+  }
+}
+,
     "Careers and employment pathways": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
     "Work experience and employer encounters": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
     "Resilience and failure": ["Lesson 1", "Lesson 2", "Lesson 3", "Lesson 4", "Lesson 5"],
