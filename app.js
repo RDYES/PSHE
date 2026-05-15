@@ -7,7 +7,7 @@ import {
   onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js";
 
-import { auth } from "./firebase-config.js";
+import { auth } from ".https://www.gstatic.com/firebase-config.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const loginView      = document.getElementById("loginView");
